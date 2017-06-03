@@ -1,0 +1,374 @@
+void configssdnew(struct Net* net){
+    net->layer_num = 0;
+    net->tops_num = 0;
+    net->tops = NULL;
+    net->names = NULL;
+    net->layer_parameter = NULL;
+
+    char* input[1] = {"data"};
+    make_input(net, "data", 1, input, 1, 3, 100,100);
+
+    char* b_1[1] = {"data"};
+    char* t_1[1] = {"conv1"};
+    make_convolution(net, "conv1", 1, b_1, 1, t_1, 50, 1, 2, 3, 3, 1);
+
+    char* b_2[1] = {"conv1"};
+    char* t_2[1] = {"bn1"};
+    make_batchnorm(net, "bn_conv1", 1, b_2, 1, t_2, 0.0001);
+
+
+    char* b_3[1] = {"bn1"};
+    char* t_3[1] = {"relu1"};
+    make_relu(net, "ReLU1", 1, b_3, 1, t_3, 0.0);
+
+    char* b_4[1] = {"relu1"};
+    char* t_4[1] = {"pool1"};
+    make_pooling(net, "pool1", 1, b_4, 1, t_4, 0, 2, 2, MAX, 0);
+
+    char* b_5[1] = {"pool1"};
+    char* t_5[1] = {"conv2"};
+    make_convolution(net, "conv2", 1, b_5, 1, t_5, 50, 1, 1, 3,3, 1);
+
+    char* b_6[1] = {"conv2"};
+    char* t_6[1] = {"bn2"};
+    make_batchnorm(net, "bn_conv2", 1, b_6, 1, t_6, 0.0001);
+
+    char* b_7[1] = {"bn2"};
+    char* t_7[1] = {"relu2"};
+    make_relu(net, "ReLU2", 1, b_7, 1, t_7, 0.0);
+
+    char* b_8[1] = {"relu2"};
+    char* t_8[1] = {"pool2"};
+    make_pooling(net, "pool2", 1, b_8, 1, t_8, 0, 2, 2, MAX, 0);
+
+    char* b_9[1] = {"pool2"};
+    char* t_9[1] = {"conv3_1"};
+    make_convolution(net, "conv3_1", 1, b_9, 1, t_9, 100, 1, 1,1, 1, 1);
+
+    char* b_10[1] = {"conv3_1"};
+    char* t_10[1] = {"bn3_1"};
+    make_batchnorm(net, "bn_conv3_1", 1, b_10, 1, t_10, 0.0001);
+
+    char* b_11[1] = {"bn3_1"};
+    char* t_11[1] = {"relu3_1"};
+    make_relu(net, "ReLU3_1", 1, b_11, 1, t_11, 0.0);
+
+    char* b_12[1] = {"relu3_1"};
+    char* t_12[1] = {"conv3_2"};
+    make_convolution(net, "conv3_2", 1, b_12, 1, t_12, 100, 1, 1,3, 3, 1);
+
+    char* b_13[1] = {"conv3_2"};
+    char* t_13[1] = {"bn3_2"};
+    make_batchnorm(net, "bn_conv3_2", 1, b_13, 1, t_13, 0.0001);
+
+    char* b_14[1] = {"bn3_2"};
+    char* t_14[1] = {"relu3_2"};
+    make_relu(net, "ReLU3_2", 1, b_14, 1, t_14, 0.0);
+
+    char* b_15[1] = {"relu3_2"};
+    char* t_15[1] = {"pool3"};
+    make_pooling(net, "pool3", 1, b_15, 1, t_15, 0, 2, 2, MAX, 0);
+
+
+    char* b_16[1] = {"pool3"};
+    char* t_16[1] = {"conv4_1"};
+    make_convolution(net, "conv4_1", 1, b_16, 1, t_16, 100, 1, 1, 1, 1, 1);
+
+    char* b_17[1] = {"conv4_1"};
+    char* t_17[1] = {"bn4_1"};
+    make_batchnorm(net, "bn_conv4_1", 1, b_17, 1, t_17, 0.0001);
+
+    char* b_18[1] = {"bn4_1"};
+    char* t_18[1] = {"relu4_1"};
+    make_relu(net, "ReLU4_1", 1, b_18, 1, t_18, 0.0);
+
+
+    char* b_19[1] = {"relu4_1"};
+    char* t_19[1] = {"conv4_2"};
+    make_convolution(net, "conv4_2", 1, b_19, 1, t_19, 100, 1, 1, 3, 3, 1);
+
+    char* b_20[1] = {"conv4_2"};
+    char* t_20[1] = {"bn4_2"};
+    make_batchnorm(net, "bn_conv4_2", 1, b_20, 1, t_20, 0.0001);
+
+    char* b_21[1] = {"bn4_2"};
+    char* t_21[1] = {"relu4_2"};
+    make_relu(net, "ReLU4_2", 1, b_21, 1, t_21, 0.0);
+
+    char* b_22[1] = {"relu4_2"};
+    char* t_22[1] = {"pool4"};
+    make_pooling(net, "pool4", 1, b_22, 1, t_22, 0, 2, 2, MAX, 0);
+
+    char* b_23[1] = {"pool4"};
+    char* t_23[1] = {"conv5"};
+    make_convolution(net, "conv5", 1, b_23, 1, t_23, 256, 1, 1, 1,1, 1);
+
+    char* b_24[1] = {"conv5"};
+    char* t_24[1] = {"bn5"};
+    make_batchnorm(net, "bn_conv5", 1, b_24, 1, t_24, 0.0001);
+
+    char* b_25[1] = {"bn5"};
+    char* t_25[1] = {"relu5"};
+    make_relu(net, "ReLU5", 1, b_25, 1, t_25, 0.0);
+
+    char* b_26[1] = {"relu5"};
+    char* t_26[1] = {"conv6"};
+    make_convolution(net, "conv6", 1, b_26, 1, t_26, 256, 1, 1, 3, 3, 1);
+
+    char* b_27[1] = {"conv6"};
+    char* t_27[1] = {"bn6"};
+    make_batchnorm(net, "bn_conv6", 1, b_27, 1, t_27, 0.0001);
+
+    char* b_28[1] = {"bn6"};
+    char* t_28[1] = {"relu6"};
+    make_relu(net, "ReLU6", 1, b_28, 1, t_28, 0.0);
+
+    char* b_29[1] ={"relu6"};
+    char* t_29[1] = {"conv6_1"};
+    make_convolution(net, "conv6_1", 1, b_29, 1, t_29, 100, 0, 1, 1, 1, 1);//注im2col可省略
+
+    char* b_30[1] ={"conv6_1"};
+    char* t_30[1] = {"relu6_1"};
+    make_relu(net, "RELU6_1", 1, b_30, 1, t_30, 0.0);
+
+    char* b_31[1] ={"relu6_1"};
+    char* t_31[1] = {"conv6_2"};
+    make_convolution(net, "conv6_2", 1, b_31, 1, t_31, 100, 1, 2, 3, 3,1);
+
+    char* b_32[1] ={"conv6_2"};
+    char* t_32[1] = {"relu6_2"};
+    make_relu(net, "RELU6_2", 1, b_32, 1, t_32, 0.0);
+
+    char* b_33[1] ={"relu6_2"};
+    char* t_33[1] = {"conv7_1"};
+    make_convolution(net, "conv7_1", 1, b_33, 1, t_33,100, 0, 1, 1, 1, 1 ); //注im2col可省略
+
+    char* b_34[1] ={"conv7_1"};
+    char* t_34[1] = {"relu7_1"};
+    make_relu(net, "RELU7_1", 1, b_34, 1, t_34, 0.0);
+
+
+    char* b_35[1] ={"relu7_1"};
+    char* t_35[1] = {"conv_cqs_1"};
+    make_convolution(net, "conv_cqs_1", 1, b_35, 1, t_35,100, 1, 2, 4, 2, 1 );
+
+    char* b_36[1] ={"conv_cqs_1"};
+    char* t_36[1] = {"relu_cqs_1"};
+    make_relu(net, "RELU_cqs_1", 1, b_36, 1, t_36, 0.0);
+
+
+    char* b_37[1] ={"relu7_1"};
+    char* t_37[1] = {"conv_cqs_2"};
+    make_convolution(net, "conv_cqs_2", 1, b_37, 1, t_37,100, 1, 2, 4, 2, 1 );
+
+    char* b_38[1] ={"conv_cqs_2"};
+    char* t_38[1] = {"relu_cqs_2"};
+    make_relu(net, "RELU_cqs_2", 1, b_38, 1, t_38, 0.0);
+
+
+    char* b_39[1] ={"relu4_2"};
+    char* t_39[1] = {"conv4_2_norm2"};
+    make_normalize(net, "conv4_2_norm2", 1, b_39, 1, t_39, 0,0);
+
+    // 左边5个conf
+
+    char* b_40[1] = {"relu_cqs_2"};
+    char* t_40[1] = {"conv_cqs_2_mbox_conf2"};
+    make_convolution(net, "conv_cqs_2_mbox_conf2", 1, b_40, 1, t_40, 30, 1, 1, 3, 3, 1);
+
+    char* b_41[1] = {"relu_cqs_1"};
+    char* t_41[1] = {"conv_cqs_1_mbox_conf2"};
+    make_convolution(net, "conv_cqs_1_mbox_conf2", 1, b_41, 1, t_41, 30, 1, 1, 3, 3, 1);
+
+    char* b_42[1] = {"relu6_2"};
+    char* t_42[1] = {"conv6_2_mbox_conf2"};
+    make_convolution(net, "conv6_2_mbox_conf2", 1, b_42, 1, t_42, 30, 1, 1, 3, 3, 1);
+
+    char* b_43[1] = {"relu6"};
+    char* t_43[1] = {"conv6_mbox_conf2"};
+    make_convolution(net, "conv6_mbox_conf2", 1, b_43, 1, t_43, 30, 1, 1, 3, 3, 1);
+
+    char* b_44[1] = {"conv4_2_norm2"};
+    char* t_44[1] = {"conv4_2_norm2_mbox_conf2"};
+    make_convolution(net, "conv4_2_norm2_mbox_conf2", 1, b_44, 1, t_44, 15, 1, 1, 3, 3, 1);
+
+    //右边5个LOC
+
+    char* b_45[1] = {"relu_cqs_2"};
+    char* t_45[1] = {"conv_cqs_2_mbox_loc2"};
+    make_convolution(net, "conv_cqs_2_mbox_loc2", 1, b_45, 1, t_45, 24, 1, 1, 3, 3, 1);
+
+    char* b_46[1] = {"relu_cqs_1"};
+    char* t_46[1] = {"conv_cqs_1_mbox_loc2"};
+    make_convolution(net, "conv_cqs_1_mbox_loc2", 1, b_46, 1, t_46, 24, 1, 1, 3, 3, 1);
+
+    char* b_47[1] = {"relu6_2"};
+    char* t_47[1] = {"conv6_2_mbox_loc2"};
+    make_convolution(net, "conv6_2_mbox_loc2", 1, b_47, 1, t_47, 24, 1, 1, 3, 3, 1);
+
+    char* b_48[1] = {"relu6"};
+    char* t_48[1] = {"conv6_mbox_loc2"};
+    make_convolution(net, "conv6_mbox_loc2", 1, b_48, 1, t_48, 24, 1, 1, 3, 3, 1);
+
+    char* b_49[1] = {"conv4_2_norm2"};
+    char* t_49[1] = {"conv4_2_norm2_mbox_loc2"};
+    make_convolution(net, "conv4_2_norm2_mbox_loc2", 1, b_49, 1, t_49, 12, 1, 1, 3, 3, 1);
+
+
+    char* b_50[1] = {"conv_cqs_2_mbox_conf2"};
+    char* t_50[1] = {"conv_cqs_2_mbox_conf2_perm2"};
+    make_permute(net, "conv_cqs_2_mbox_conf2_perm2", 1, b_50, 1, t_50, 0, 2, 3, 1);
+
+    char* b_51[1] = {"conv_cqs_1_mbox_conf2"};
+    char* t_51[1] = {"conv_cqs_1_mbox_conf2_perm2"};
+    make_permute(net, "conv_cqs_1_mbox_conf2_perm2", 1, b_51, 1, t_51, 0, 2, 3, 1);
+
+
+    char* b_52[1] = {"conv6_2_mbox_conf2"};
+    char* t_52[1] = {"conv6_2_mbox_conf2_perm2"};
+    make_permute(net, "conv6_2_mbox_conf2_perm2", 1, b_52, 1, t_52, 0, 2, 3, 1);
+
+
+
+    char* b_53[1] = {"conv6_mbox_conf2"};
+    char* t_53[1] = {"conv6_mbox_conf2_perm2"};
+    make_permute(net, "conv6_mbox_conf2_perm2", 1, b_53, 1, t_53, 0, 2, 3, 1);
+
+
+
+    char* b_54[1] = {"conv4_2_norm2_mbox_conf2"};
+    char* t_54[1] = {"conv4_2_norm2_mbox_conf2_perm2"};
+    make_permute(net, "conv4_2_norm2_mbox_conf2_perm2", 1, b_54, 1, t_54, 0, 2, 3, 1);
+
+
+
+    char* b_55[1] = {"conv_cqs_2_mbox_loc2"};
+    char* t_55[1] = {"conv_cqs_2_mbox_loc2_perm2"};
+    make_permute(net, "conv_cqs_2_mbox_loc2_perm2", 1, b_55, 1, t_55, 0, 2, 3, 1);
+
+
+
+    char* b_56[1] = {"conv_cqs_1_mbox_loc2"};
+    char* t_56[1] = {"conv_cqs_1_mbox_loc2_perm2"};
+    make_permute(net, "conv_cqs_1_mbox_loc2_perm2", 1, b_56, 1, t_56, 0, 2, 3, 1);
+
+
+
+    char* b_57[1] = {"conv6_2_mbox_loc2"};
+    char* t_57[1] = {"conv6_2_mbox_loc2_perm2"};
+    make_permute(net, "conv6_2_mbox_loc2_perm2", 1, b_57, 1, t_57, 0, 2, 3, 1);
+
+
+
+    char* b_58[1] = {"conv6_mbox_loc2"};
+    char* t_58[1] = {"conv6_mbox_loc2_perm2"};
+    make_permute(net, "conv6_mbox_loc2_perm2", 1, b_58, 1, t_58, 0, 2, 3, 1);
+
+
+
+    char* b_59[1] = {"conv4_2_norm2_mbox_loc2"};
+    char* t_59[1] = {"conv4_2_norm2_mbox_loc2_perm2"};
+    make_permute(net, "conv4_2_norm2_mbox_loc2_perm2", 1, b_59, 1, t_59, 0, 2, 3, 1);
+
+
+
+
+    char* b_60[1] = {"conv_cqs_2_mbox_conf2_perm2"};
+    char* t_60[1] = {"conv_cqs_2_mbox_conf2_flat2"};
+    make_flatten(net, "conv_cqs_2_mbox_conf2_flat2", 1, b_60, 1, t_60, 1, 3);
+
+    char* b_61[1] = {"conv_cqs_1_mbox_conf2_perm2"};
+    char* t_61[1] = {"conv_cqs_1_mbox_conf2_flat2"};
+    make_flatten(net, "conv_cqs_1_mbox_conf2_flat2", 1, b_61, 1, t_61, 1, 3);
+
+    char* b_62[1] = {"conv6_2_mbox_conf2_perm2"};
+    char* t_62[1] = {"conv6_2_mbox_conf2_flat2"};
+    make_flatten(net, "conv6_2_mbox_conf2_flat2", 1, b_62, 1, t_62, 1, 3);
+
+
+    char* b_63[1] = {"conv6_mbox_conf2_perm2"};
+    char* t_63[1] = {"conv6_mbox_conf2_flat2"};
+    make_flatten(net, "conv6_mbox_conf2_flat2", 1, b_63, 1, t_63, 1, 3);
+
+
+    char* b_64[1] = {"conv4_2_norm2_mbox_conf2_perm2"};
+    char* t_64[1] = {"conv4_2_norm2_mbox_conf2_flat2"};
+    make_flatten(net, "conv4_2_norm2_mbox_conf2_flat2", 1, b_64, 1, t_64, 1, 3);
+
+
+
+    char* b_65[1] = {"conv_cqs_2_mbox_loc2_perm2"};
+    char* t_65[1] = {"conv_cqs_2_mbox_loc2_flat2"};
+    make_flatten(net, "conv_cqs_2_mbox_loc2_flat2", 1, b_65, 1, t_65, 1, 3);
+
+
+    char* b_66[1] = {"conv_cqs_1_mbox_loc2_perm2"};
+    char* t_66[1] = {"conv_cqs_1_mbox_loc2_flat2"};
+    make_flatten(net, "conv_cqs_1_mbox_loc2_flat2", 1, b_66, 1, t_66, 1, 3);
+
+
+    char* b_67[1] = {"conv6_2_mbox_loc2_perm2"};
+    char* t_67[1] = {"conv6_2_mbox_loc2_flat2"};
+    make_flatten(net, "conv6_2_mbox_loc2_flat2", 1, b_67, 1, t_67, 1, 3);
+
+
+
+    char* b_68[1] = {"conv6_mbox_loc2_perm2"};
+    char* t_68[1] = {"conv6_mbox_loc2_flat2"};
+    make_flatten(net, "conv6_mbox_loc2_flat2", 1, b_68, 1, t_68, 1, 3);
+
+
+    char* b_69[1] = {"conv4_2_norm2_mbox_loc2_perm2"};
+    char* t_69[1] = {"conv4_2_norm2_mbox_loc2_flat2"};
+    make_flatten(net, "conv4_2_norm2_mbox_loc2_flat2", 1, b_69, 1, t_69, 1, 3);
+
+
+
+
+    char* b_70[5] = {"conv_cqs_2_mbox_conf2_flat2","conv_cqs_1_mbox_conf2_flat2","conv6_2_mbox_conf2_flat2", "conv6_mbox_conf2_flat2", "conv4_2_norm2_mbox_conf2_flat2" };
+    char* t_70[1] = {"mbox_conf"};
+    make_concat(net, "mbox_conf", 5, b_70, 1, t_70, 1);
+
+    char* b_71[5] = {"conv_cqs_2_mbox_loc2_flat2", "conv_cqs_1_mbox_loc2_flat2", "conv6_2_mbox_loc2_flat2", "conv6_mbox_loc2_flat2", "conv4_2_norm2_mbox_loc2_flat2" };
+    char* t_71[1] = {"mbox_loc"};
+    make_concat(net, "mbox_loc", 5, b_71, 1, t_71, 1);
+
+
+    char* b_72[2] = {"conv4_2_norm2", "data"};
+    char* t_72[1] = {"conv4_2_norm2_mbox_priorbox2"};
+    make_priorbox(net, "conv4_2_norm2_mbox_priorbox2", 2, b_72, 1, t_72, 10, -1, 2,-1, 0.1, 0.1, 0.2, 0.2);
+
+
+    char* b_73[2] = {"relu6", "data"};
+    char* t_73[1] = {"conv6_mbox_priorbox2"};
+    make_priorbox(net, "conv6_mbox_priorbox2", 2, b_73, 1, t_73, 20, 45, 2, 3, 0.1, 0.1, 0.2, 0.2);
+
+    char* b_74[2] = {"relu6_2", "data"};
+    char* t_74[1] = {"conv6_2_mbox_priorbox2"};
+    make_priorbox(net, "conv6_2_mbox_priorbox2", 2, b_74, 1, t_74, 45, 70, 2, 3, 0.1, 0.1, 0.2, 0.2);
+
+    char* b_75[2] = {"relu_cqs_1", "data"};
+    char* t_75[1] = {"conv_cqs_1_mbox_priorbox2"};
+    make_priorbox(net, "conv_cqs_1_mbox_priorbox2", 2, b_75, 1, t_75, 70, 95, 2, 3, 0.1, 0.1, 0.2, 0.2);
+
+    char* b_76[2] = {"relu_cqs_2", "data"};
+    char* t_76[1] = {"conv_cqs_2_mbox_priorbox2"};
+    make_priorbox(net, "conv_cqs_2_mbox_priorbox2", 2, b_76, 1, t_76, 95, 120, 2, 3, 0.1, 0.1, 0.2, 0.2);
+
+    char* b_77[5] = { "conv_cqs_2_mbox_priorbox2", "conv_cqs_1_mbox_priorbox2", "conv6_2_mbox_priorbox2",  "conv6_mbox_priorbox2","conv4_2_norm2_mbox_priorbox2"};
+    char* t_77[1] = {"mbox_priorbox"};
+    make_concat(net, "mbox_priorbox", 5, b_77, 1, t_77, 2);
+
+
+
+    char* inputblobs[1] = {"data"};
+    char* outputblobs[2] = {"mbox_loc", "mbox_conf"};
+    set_net_io(net, 1, inputblobs, 2, outputblobs);
+}
+
+
+
+
+
+
+
